@@ -1,0 +1,51 @@
+<div class="container mt-3">
+    <h2 class="text-center mb-2">Lista učenika</h2>
+    <div class="clearfix mb-2">
+      <div class="form-row float-right">
+        <div class="mr-1">
+          <input type="search" class="form-control" id="searchBox" #searchBox (keyup)="search(searchBox.value)" placeholder="Pretraga"
+          />
+        </div>
+        <div>
+          <button class="btn">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-row float-left" *ngIf="authService.role == 'ROLE_ADMIN'">
+        <div>
+          <button class="btn btn-info" routerLink="/hROLE_ADMIN/studenti/add">
+            <i class="fa fa-add"></i>Dodaj učenika
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Operations</th>
+        </thead>
+        <tbody>
+  
+          <tr *ngFor="let student of studenti$ | async">
+  
+            <td>{{student.id}}</td>
+            <td>{{student.firstName}}</td>
+            <td>{{student.lastName}}</td>
+            <td>{{student.username}}</td>
+            <td>{{student.email}}</td>
+            <td>
+              <a routerLink="{{'/hROLE_ADMIN/studenti/edit/'+student.id}}" class="btn btn-primary" role="button">Izmeni</a> 
+              <a routerLink="/hROLE_ADMIN/studenti" id="al"class="btn btn-danger " role="button" (click)="delete(student)">Izbriši</a>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

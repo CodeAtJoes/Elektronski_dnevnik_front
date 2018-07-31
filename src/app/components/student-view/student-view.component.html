@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+    <th>Predmet</th>
+    <th>Ocene</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sm of sm$ | async">
+      <td>{{sm.subject}}</td>
+      <td>
+        <button type="button" class="btn" data-toggle="popover" title="Detalji: {{m.markType.type}} {{m.markEarned}} Nastavnik: {{m.timetable.qualification.teacher.firstName}} {{m.timetable.qualification.teacher.lastName}} Napomena: {{m.note}}"
+          *ngFor="let m of sm.marks" [ngClass]="{'font-weight-bold' : m.markType.id == 113}">{{m.markValue}}</button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

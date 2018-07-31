@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-center">
+  <button  *ngFor="let tt of timetables$ | async"type="button"
+  (click)="onSelect(tt)" class="btn btn-outline-info  mx-auto">{{tt.ttClass.grade.grade}}-{{tt.ttClass.indeks}}  {{tt.qualification.subject.subject.title}} </button>
+  </div>  
+  <div *ngIf="selectedTimetable">
+    <table class="table table-striped">
+      <thead>
+        <th>Učenik</th>
+        <th>Ocene</th>
+        <th>Opcije</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sm of studentMarks$ | async">
+          <td>{{sm.student.firstName}} {{sm.student.lastName}}</td>
+          <td>
+            <button routerLink="{{'/editMark/'+m.id}}" type="button" class="btn" data-toggle="popover" title="Detalji: {{m.markType.type}} {{m.markEarned}} Nastavnik: {{m.timetable.qualification.teacher.firstName}} {{m.timetable.qualification.teacher.lastName}} Napomena: {{m.note}}"
+              *ngFor="let m of sm.marks" [ngClass]="{'font-weight-bold' : m.markType.id == 113}">{{m.markValue}}</button>
+    
+          </td>
+          <td><button class="btn btn-info" routerLink="{{'/addMark/'+sm.student.id+'/'+selectedTimetable.id}}">Dodaj Ocenu</button>
+            <button class="btn btn-info" (click)="onPick(sm.student.id,sm.marks[0].timetable.id)">Zaključi Ocenu</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

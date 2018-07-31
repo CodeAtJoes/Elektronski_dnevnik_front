@@ -1,0 +1,61 @@
+ <div class="container-fluid">
+    
+  <div class="div-header">
+    <h1 class="text-center">
+      Dobro došli u {{ title }}!
+    </h1>
+    <div class="float-right">
+    <app-user-header *ngIf="authService.role"></app-user-header>
+  </div>
+    <img class="img-banner d-block mx-auto" src="./assets/images/nastavnica.jpg" alt="Nastavnica_image"> 
+  </div>
+  <nav class="navbar navbar-expand-sm bg-light" *ngIf="authService.role == 'ROLE_ADMIN'">
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hROLE_ADMIN" >ADMIN</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hROLE_ADMIN/admini">Admini</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hROLE_ADMIN/teacheri">Nastavnici</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/hROLE_ADMIN/studenti">Učenici</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/hROLE_ADMIN/parenti">Roditelji</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/hROLE_ADMIN/subjecti">Predmeti</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/hROLE_ADMIN/classi">Odeljenja</a>
+          </li>
+      </ul>
+    
+    </nav>
+     <!-- <nav *ngIf="authService.role == 'ROLE_ADMIN'"class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" roterLink="hROLE_ADMIN">Administrator</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <!--<li class="active"><a href="#">Home</a></li>-->
+              <!--<li><a routerLink="hROLE_ADMIN/admini">Admini</a></li>
+              <li><a roterLink="hROLE_ADMIN/nastvnici">Nastavnici</a></li>
+            </ul>
+            
+          </div>
+        </nav> -->
+  
+  <div class="div-body">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="my-3 section-break">
+    <app-message-list></app-message-list>
+  </div>
+</div>
+

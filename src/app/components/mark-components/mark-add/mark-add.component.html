@@ -1,0 +1,39 @@
+<div>
+  <div class="text-center mt-3">
+      <h3>Dodavanje nove ocene</h3>
+  </div>
+  <div class="mt-4 p-3">
+      <form class="form-add clearfix w-50 mx-auto p-4" ngNativeValidate (submit)="submitMark(markValue.value, markType.value, markEarned,value, note.value)">
+
+          <div class="form-group">
+              <label for="markValue">Ocena</label>
+              <input class="form-control" type="number" step="1" min="1" max="5" id="markValue" #markValue tabindex="1" required/>
+          </div>
+          <div class="form-group">
+              <label for="markType">Tip provere</label>
+              <select id="markType" class="form-control" name="markType"  #markType tabindex="2" required>
+              <option *ngFor="let mt of markTypes" [value]="mt.id">{{mt.type}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" data-date="12-02-2013" data-date-format="dd-mm-yyyy">
+              <label for="markEarned">Datum provere</label>
+              <input  class="form-control" type="date"  id="markEarned" #markEarned tabindex="3" required />
+          </div>
+
+          <div class="form-group">
+              <label for="note">Napomena</label>
+              <textarea class="form-control" rows="3" id="note" #note tabindex="4"></textarea>
+          </div>
+
+          
+
+          <div class="float-right">
+              <button class="btn btn-outline-primary mr-1" type="submit" tabindex="5">Dodaj ocenu</button>
+              <button class="btn btn-outline-warning" type="button" (click)="goBack()" tabindex="6">Odustani</button>
+          </div>
+
+      </form>
+  </div>
+</div>
+

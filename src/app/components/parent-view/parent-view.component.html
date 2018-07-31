@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+<button class="mx-auto" *ngFor="let child of children$ | async"type="button"
+(click)="onSelect(child)" class="btn btn-outline-info btn-lg">{{child.firstName}} {{child.lastName}}</button>
+</div>  
+<div *ngIf="selectedChild">
+  <table class="table table-striped">
+    <thead>
+      <th>Predmet</th>
+      <th>Ocene</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sm of sm$ | async">
+        <td>{{sm.subject}}</td>
+        <td>
+          <button type="button" class="btn" data-toggle="popover" title="Detalji: {{m.markType.type}} {{m.markEarned}} Nastavnik: {{m.timetable.qualification.teacher.firstName}} {{m.timetable.qualification.teacher.lastName}} Napomena: {{m.note}}"
+            *ngFor="let m of sm.marks" [ngClass]="{'font-weight-bold' : m.markType.id == 113}">{{m.markValue}}</button>
+  
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
